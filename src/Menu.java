@@ -1,5 +1,8 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class Menu {
-    public void menu(){
+    public void menu() throws SQLException {
         Connect connect = new Connect();
         System.out.println("what do you want to do? \n" +
                 "1. create storage\n" +
@@ -21,9 +24,9 @@ public class Menu {
             case 4:
                 connect.deleteByName();
                 break;
-            case 5:
-                connect.showByName();
-                break;
+//            case 5:
+//                connect.showData();
+//                break;
             default:
                 break;
         }

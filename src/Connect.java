@@ -18,7 +18,7 @@ public class Connect {
         return conn;
     }
 
-    public void createStorage(){
+    public void createStorage() throws SQLException {
         System.out.println("New storage name: ");
         String storageName = scan.next();
         String SQL = "ALTER TABLE exam.sklad ADD "+storageName+" VARCHAR";
@@ -32,7 +32,7 @@ public class Connect {
         menu.menu();
     }
 
-    public void deleteStorage(){
+    public void deleteStorage() throws SQLException {
         System.out.println("Storage name: ");
         String storageName = scan.next();
         String SQL = "ALTER TABLE exam.sklad DROP COLUMN "+storageName+";";
@@ -46,7 +46,7 @@ public class Connect {
     }
 
 
-    public void addGoods(){
+    public void addGoods() throws SQLException {
         System.out.println("Storage name: ");
         String storageName =scan.next();
         System.out.println("Goods name: ");
@@ -61,7 +61,7 @@ public class Connect {
         menu.menu();
     }
 
-    public void deleteByName(){
+    public void deleteByName() throws SQLException {
         System.out.println("Name of storage:");
         String storageName = scan.next();
         System.out.println("Name of goods:");
@@ -76,26 +76,18 @@ public class Connect {
         }
         menu.menu();
     }
-
-    public void showByName(){
-        System.out.println("Name of storage");
-        String storageName = scan.next();
-        String SQL = "SELECT '"+storageName+"' FROM exam.sklad;";
-
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            ResultSet rs = pstmt.executeQuery();
-            displayActor(rs);
-        }catch (SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        menu.menu();
-    }
-
-    private void displayActor(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-            System.out.println(rs.getString("'+storageName+'") + "\n");
-        }
-        menu.menu();
-    }
+//    public  void showData() throws SQLException {
+//        String storageName = scan.next();
+//        String SQL = "select "+storageName+" from exam.sklad";
+//        try (Statement stmt = conn.createStatement()) {
+//            ResultSet rs = stmt.executeQuery(SQL);
+//            while (rs.next()) {
+//                String goodsName = rs.getString(1);
+//
+//                System.out.println(goodsName);
+//            }
+//        } catch (SQLException ex){
+//            System.out.println(ex.getMessage());
+//        }
+//    }
 }
